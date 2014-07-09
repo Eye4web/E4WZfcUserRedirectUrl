@@ -1,0 +1,32 @@
+{
+    "name": "Eye4web/e4w-zfc-user-redirect-url",
+    "description": "Changes the default redirect behaviour of ZfcUser from using routes to using URL's in the redirect param.",
+    "license": "MIT",
+    "keywords": [
+        "zfcuser",
+        "zendframework",
+        "module",
+        "eye4web"
+    ],
+    "homepage": "https://github.com/Eye4web/E4WZfcUserRedirectUrl",
+    "authors": [
+        {
+            "name": "Daniel Strøm",
+            "email": "daniel@eye4web.dk",
+            "homepage": "http://eye4web.dk"
+        }
+    ],
+    "require": {
+        "php": "~5.3",
+        "zf-commons/zfc-user": "~1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0.0",
+        "squizlabs/php_codesniffer": "~2.0.0@DEV"
+    },
+    "autoload": {
+        "psr-0": {
+            "E4W\\ZfcUser\\RedirectUrl\\": "src/"
+        }
+    }
+}
