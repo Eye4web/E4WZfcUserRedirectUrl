@@ -1,5 +1,5 @@
 {
-    "name": "Eye4web/e4w-zfc-user-redirect-url",
+    "name": "eye4web/e4w-zfc-user-redirect-url",
     "description": "Changes the default redirect behaviour of ZfcUser from using routes to using URL's in the redirect param.",
     "license": "MIT",
     "keywords": [
