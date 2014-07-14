@@ -20,9 +20,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'zfcuser_redirect_callback' => 'E4W\ZfcUser\RedirectUrl\Factory\Controller\RedirectCallableFactory',
-        ),
-        'aliases' => array(
-            //'zfcuser_redirect_callback' => 'E4W\ZfcUser\RedirectUrl\Controller\RedirectCallable'
+            'E4W\ZfcUser\RedirectUrl\ModuleOptions' => 'E4W\ZfcUser\RedirectUrl\Factory\Options\ModuleOptionsFactory'
         ),
     ),
 );

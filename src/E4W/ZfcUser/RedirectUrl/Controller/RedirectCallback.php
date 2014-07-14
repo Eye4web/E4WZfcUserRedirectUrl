@@ -23,6 +23,7 @@ use Zend\Mvc\Router\RouteInterface;
 use Zend\Mvc\Router\Exception;
 use Zend\Http\PhpEnvironment\Response;
 use ZfcUser\Options\ModuleOptions as ZfcUserOptions;
+use E4W\ZfcUser\RedirectUrl\Options\ModuleOptions;
 
 /**
  * Buils a redirect response based on the current routing and parameters
@@ -47,11 +48,11 @@ class RedirectCallback
      * @param RouteInterface $router
      * @param ModuleOptions $options
      */
-    public function __construct(Application $application, RouteInterface $router, ZfcUserOptions $zfcUserOptions)
+    public function __construct(Application $application, RouteInterface $router, ZfcUserOptions $zfcUserOptions, ModuleOptions $options)
     {
         $this->router = $router;
         $this->application = $application;
-        //$this->options = $options;
+        $this->options = $options;
         $this->zfcUserOptions = $zfcUserOptions;
     }
 
@@ -90,9 +91,38 @@ class RedirectCallback
         return false;
     }
 
+    /**
+     * Checks if a $url is in whitelist
+     * / and localhost are always allowed
+     *
+     * partly snatched from https://gist.github.com/mjangda/1623788
+     *
+     * @param $url
+     * @return bool
+     */
     private function urlWhitelisted($url)
     {
-        return true;
+        $always_allowed = array('localhost');
+        $whitelisted_domains = array_merge($this->options->getWhitelist(), $always_allowed);
+
+        // Add http if missing(to satisfy parse_url())
+        if (strpos($url, "/") !== 0 && strpos($url, "http") !== 0) {
+            $url = 'http://' . $url;
+        }
+        $domain = parse_url($url, PHP_URL_HOST);
+
+        if (strpos($url, "/") === 0 || in_array($domain, $whitelisted_domains)) {
+            return true;
+        }
+
+        foreach ($whitelisted_domains as $whitelisted_domain) {
+            $whitelisted_domain = '.' . $whitelisted_domain;
+            if (strpos($domain, $whitelisted_domain) === (strlen($domain) - strlen($whitelisted_domain))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

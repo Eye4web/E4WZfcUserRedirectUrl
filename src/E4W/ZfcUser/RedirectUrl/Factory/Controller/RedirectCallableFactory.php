@@ -21,8 +21,8 @@ class RedirectCallableFactory implements FactoryInterface
         $zfcUserOtions = $serviceLocator->get('zfcuser_module_options');
 
         /* @var \E4W\ZfcUser\RedirectUrl\Options\ModuleOptions $options */
-        //$options = $serviceLocator->get('E4W\ZfcUser\RedirectUrl\ModuleOptions');
+        $options = $serviceLocator->get('E4W\ZfcUser\RedirectUrl\ModuleOptions');
 
-        return new RedirectCallback($application, $router, $zfcUserOtions);
+        return new RedirectCallback($application, $router, $zfcUserOtions, $options);
     }
 }
