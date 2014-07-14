@@ -23,4 +23,9 @@ return array(
             'E4W\ZfcUser\RedirectUrl\ModuleOptions' => 'E4W\ZfcUser\RedirectUrl\Factory\Options\ModuleOptionsFactory'
         ),
     ),
+
+    'e4wzfcuserredirecturl' => array(
+        'whitelist' => array(
+        )
+    )
 );
