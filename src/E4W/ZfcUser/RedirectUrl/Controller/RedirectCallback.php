@@ -111,7 +111,7 @@ class RedirectCallback
         }
         $domain = parse_url($url, PHP_URL_HOST);
 
-        if (strpos($url, "/") === 0 || in_array($domain, $whitelisted_domains)) {
+        if ((substr($url, 0, 2) !== '//' && strpos($url, '/') === 0) || in_array($domain, $whitelisted_domains)) {
             return true;
         }
 
