@@ -9,7 +9,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class RedirectCallableFactory implements \Zend\ServiceManager\Factory\FactoryInterface
 {
 
-    public function __invoke(\Interop\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(\Psr\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         /* @var RouteInterface $router */
         $router = $serviceLocator->get('Router');
