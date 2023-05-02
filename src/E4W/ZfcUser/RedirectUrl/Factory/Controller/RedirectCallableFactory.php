@@ -6,10 +6,10 @@ use E4W\ZfcUser\RedirectUrl\Controller\RedirectCallback;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class RedirectCallableFactory implements FactoryInterface
+class RedirectCallableFactory implements \Zend\ServiceManager\Factory\FactoryInterface
 {
 
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(\Psr\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         /* @var RouteInterface $router */
         $router = $serviceLocator->get('Router');
